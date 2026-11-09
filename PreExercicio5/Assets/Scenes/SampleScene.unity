@@ -310,6 +310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2800000, guid: 3c7fa7843d78ddd5fadb3d7ec55fc50b, type: 3}
+  <KeyPress>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &2087110900
 Transform:
   m_ObjectHideFlags: 0

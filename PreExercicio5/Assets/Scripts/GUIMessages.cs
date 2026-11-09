@@ -5,25 +5,18 @@ public class GUIMessages : MonoBehaviour
     // The messages fade speed
     [SerializeField] [Range(0.1f, 1f)] float fadeSpeed = 0.6f;
 
-    // Reference to the event master
-    private EventMaster em;
-
     // Degree of visibility of each label
     private float visibilityW;
     private float visibilityA;
     private float visibilityS;
     private float visibilityD;
 
-    // Awake is called one time at the beginning
-    private void Awake()
-    {
-        // Get reference to the event master
-        em = GetComponent<EventMaster>();
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
+        EventMaster em = GetComponent<EventMaster>();
+        em.KeyPress.AddListener(ShowGUIMessage);
+        
         // Set visibility of all labels to zero
         visibilityW = 0f;
         visibilityA = 0f;
@@ -38,18 +31,6 @@ public class GUIMessages : MonoBehaviour
         if (visibilityA > 0) visibilityA -= fadeSpeed * Time.deltaTime;
         if (visibilityS > 0) visibilityS -= fadeSpeed * Time.deltaTime;
         if (visibilityD > 0) visibilityD -= fadeSpeed * Time.deltaTime;
-    }
-
-    // Use this to add event listeners
-    private void OnEnable()
-    {
-        em.KeyPress += ShowGUIMessage;
-    }
-
-    // Use this to remove event listeners
-    private void OnDisable()
-    {
-        em.KeyPress -= ShowGUIMessage;
     }
 
     // This draws the immediate mode GUI each frame

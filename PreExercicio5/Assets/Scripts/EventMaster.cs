@@ -1,11 +1,19 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EventMaster : MonoBehaviour
 {
 
     // The background image
     [SerializeField] private Texture background = null;
+    // Others can add or remove listeners to the key press event
+    [field: SerializeField] public UnityEvent<char> KeyPress {get; private set;}
+
+    private void Awake()
+    {
+        KeyPress = new UnityEvent<char>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -42,6 +50,5 @@ public class EventMaster : MonoBehaviour
         if (KeyPress != null) KeyPress.Invoke(key);
     }
 
-    // Others can add or remove listeners to the key press event
-    public event Action<char> KeyPress;
+    
 }
